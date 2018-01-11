@@ -1,0 +1,9 @@
+#!/bin/sh
+
+for file in problem*.py;
+do
+    echo ""
+    echo "Executing  $file"
+    `which python` $file
+    echo ""
+done
