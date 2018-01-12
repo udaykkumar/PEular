@@ -3,7 +3,13 @@
 for file in problem*.py;
 do
     echo ""
-    echo "Executing  $file"
-    `which python` $file
+    filename=$(basename ${file%.*})
+    echo "Executing  $filename"
+    if test -f $filename.in; then
+        `which python` $file  < $filename.in
+    else
+        `which python` $file  
+    fi
+
     echo ""
 done

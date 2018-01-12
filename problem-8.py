@@ -33,14 +33,34 @@ import sys
 import time
 
 
-all_lines = []
-for line in sys.stdin:
-    line       = [ l.replace('\n', '') for l in line ]
-    all_lines += [ l.replace(' ', '') for l in line ]
 
 
-print all_lines
+def getProd(s):
+    ans = 1
+    for i in s:
+        ans *= int(i)
+    return ans
+
+def scanString():
+    v = ""
+    for line in sys.stdin:
+        v +=  str(line).strip(' \n\r\t')
+    return v
+
+
+def CalculateMaxProd(v):
+    i = 0
+    j = len(v)
+    maxProd = 0
+    while (i < j-13) :
+        s =  str(v[i:i+13])
+        if s.find('0') == -1:
+            sum =  getProd(s)
+            if sum > maxProd:
+                maxProd = sum
+        i += 1
+    return maxProd
 
 start_time = time.time()
-
+print CalculateMaxProd(scanString())
 print("--- %s seconds ---" % (time.time() - start_time))
