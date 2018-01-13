@@ -22,9 +22,27 @@ import time
 import sys
 
 
-def startingNumberWithLongestChain():
-    return "ToDo"
+def getChain(n):
+    chain = 0
+    while ( n > 1 ):
+        chain += 1
+        if n%2 == 0:
+            n /= 2
+        else:
+            n = (3*n) +1
+        chain += 1
+    return chain
+
+def startingNumberWithLongestChain_Naive_BruteForce():
+    cLen = 0
+    cGen = 0
+    for n in range(1000005):
+        chain = getChain(n)
+        if cLen < chain:
+            cLen = chain
+            cGen = n
+    return cGen
 
 start_time = time.time()
-print startingNumberWithLongestChain()
+print startingNumberWithLongestChain_Naive_BruteForce()
 print("--- %s seconds ---" % (time.time() - start_time))
