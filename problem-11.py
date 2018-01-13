@@ -33,12 +33,17 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 '''
 
 import time
+import sys
 
 
+def getMatrix():
+    foo    = [ str(line).strip('\r\n').lstrip(' ').rstrip(' ').split(' ') for line in sys.stdin ]
+    return [ map(int,x) for x in foo ]
 
-def greatestProdInGrid():
-    return "TODO"
+
 
 start_time = time.time()
-print greatestProdInGrid()
+#print greatestProdInGrid( getMatrix(), 0, 0, 20, 20, 4 )
+print getMatrix()
+
 print("--- %s seconds ---" % (time.time() - start_time))
