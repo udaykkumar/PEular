@@ -36,14 +36,85 @@ import time
 import sys
 
 
-def getMatrix():
-    foo    = [ str(line).strip('\r\n').lstrip(' ').rstrip(' ').split(' ') for line in sys.stdin ]
-    return [ map(int,x) for x in foo ]
+def getMatrix(offset,n):
+    foo     = [ str(line).strip('\r\n') .lstrip(' ').rstrip(' ').split(' ')  for line in sys.stdin ]
+    grid    = [ map(int,x) for x in foo ]
+
+    w = offset + offset + n
+    h = w
+    matrix = [[1 for x in range(w)] for y in range(h)]
+
+    for i in range(offset, offset+n):
+        for j in range(offset, offset+n):
+                matrix[i][j] = grid[i-offset][j-offset]
+
+    return matrix
 
 
+def prodN(g, i, j):
+    return g[i][j] * g[i][j-1] * g[i][j-2] * g[i][j-3]
+
+def prodE(g, i, j):
+    return g[i][j] * g[i+1][j] *g[i+2][j] * g[i+3][j]
+
+def prodS(g, i, j):
+    return g[i][j] * g[i][j+1] * g[i][j+2] * g[i][j+3]
+
+def prodW(g, i, j):
+    return g[i][j] * g[i-1][j] * g[i-2][j] * g[i-3][j]
+
+
+def prodNE(g, i, j):
+    return g[i][j] * g[i+1][j-1] * g[i+2][j-2] * g[i+3][j-3]
+
+def prodSE(g, i, j):
+    return g[i][j] * g[i+1][j+1] * g[i+2][j+2] * g[i+3][j+3]
+
+def prodNW(g, i, j):
+    return g[i][j] * g[i-1][j-1] * g[i-2][j-2] * g[i-3][j-3]
+
+def prodSW(g, i, j):
+    return g[i][j] * g[i-1][j+1] * g[i-2][j+2] * g[i-3][j+3]
+
+def greatestProdInGrid(grid, offset, n):
+    gProd = 1
+    for i in range( offset, n ):
+        for j in range( offset, n):
+            pN  = prodN( grid, i, j )
+            if pN > gProd:
+                gProd = pN
+
+            pE  = prodE( grid, i, j )
+            if pE > gProd:
+                gProd = pE
+
+            pS  = prodS( grid, i, j )
+            if pS > gProd:
+                gProd = pS
+
+            pW  = prodW( grid, i, j )
+            if pW > gProd:
+                gProd = pW
+
+            pNE = prodNE( grid, i, j )
+            if pNE > gProd:
+                gProd = pNE
+
+            pNW = prodNW( grid, i, j )
+            if pNW > gProd:
+                gProd = pNW
+
+            pSE = prodSE( grid, i, j )
+            if pSE > gProd:
+                gProd = pSE
+
+            pSW = prodSW( grid, i, j )
+            if pSW > gProd:
+                gProd = pSW
+
+    return gProd
 
 start_time = time.time()
-#print greatestProdInGrid( getMatrix(), 0, 0, 20, 20, 4 )
-print getMatrix()
+print  greatestProdInGrid( getMatrix(4,20) , 4, 20 )
 
 print("--- %s seconds ---" % (time.time() - start_time))
