@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-for file in problem*.py;
+for file in $(ls problem*.py | sort -n -t - -k 2);
 do
     echo ""
     filename=$(basename ${file%.*})
