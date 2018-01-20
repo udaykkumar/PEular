@@ -21,7 +21,6 @@ The following iterative sequence is defined for the set of positive integers:
 import time
 import sys
 
-
 def getChain(n):
     chain = 0
     while ( n > 1 ):
@@ -33,6 +32,7 @@ def getChain(n):
         chain += 1
     return chain
 
+#TODO This needs improvement
 def startingNumberWithLongestChain_Naive_BruteForce():
     cLen = 0
     cGen = 0
