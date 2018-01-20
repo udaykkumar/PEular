@@ -17,7 +17,8 @@ import sys
 
 
 def sumOfPropDivs(n):
-    sqRtN = int(math.sqrt(n))
+    sqRtN  = int(math.sqrt(n))
+    sqRtN += 1
     sumDivs = 0
     for i in range(2,sqRtN):
         if n%i == 0:
