@@ -32,6 +32,25 @@ def getChain(n):
         chain += 1
     return chain
 
+chainCache = {}
+
+def getChainImproved(n):
+    if n <= 1 :
+        return 0
+
+    if n in chainCache:
+        return chainCache[n]
+
+    chain = 0
+    if n%2 == 0:
+        chain = (getChainImproved(n/2) +1)
+    else:
+        chain = (getChainImproved((3*n)+1) +1)
+
+    chainCache[n] = chain
+    return chain
+
+
 #TODO This needs improvement
 def startingNumberWithLongestChain_Naive_BruteForce():
     cLen = 0
@@ -43,6 +62,20 @@ def startingNumberWithLongestChain_Naive_BruteForce():
             cGen = n
     return cGen
 
+#TODO This first attempt towards improvement
+def startingNumberWithLongestChain_Improvement_Trial():
+    cLen = 0
+    cGen = 0
+    for n in range(1000005):
+        chain = getChainImproved(n)
+        if cLen < chain:
+            cLen = chain
+            cGen = n
+    return cGen
+
 start_time = time.time()
 print startingNumberWithLongestChain_Naive_BruteForce()
-print("--- %s seconds ---" % (time.time() - start_time))
+print("--- startingNumberWithLongestChain_Naive_BruteForce  %s seconds ---" % (time.time() - start_time))
+start_time = time.time()
+print startingNumberWithLongestChain_Improvement_Trial()
+print("--- startingNumberWithLongestChain_Improvement_Trial %s seconds ---" % (time.time() - start_time))
