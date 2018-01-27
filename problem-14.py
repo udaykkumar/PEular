@@ -74,8 +74,8 @@ def startingNumberWithLongestChain_Improvement_Trial():
     return cGen
 
 start_time = time.time()
-print startingNumberWithLongestChain_Naive_BruteForce()
-print("--- startingNumberWithLongestChain_Naive_BruteForce  %s seconds ---" % (time.time() - start_time))
-start_time = time.time()
+#print startingNumberWithLongestChain_Naive_BruteForce()
+#print("--- startingNumberWithLongestChain_Naive_BruteForce  %s seconds ---" % (time.time() - start_time))
+#start_time = time.time()
 print startingNumberWithLongestChain_Improvement_Trial()
-print("--- startingNumberWithLongestChain_Improvement_Trial %s seconds ---" % (time.time() - start_time))
+print("---  %s seconds ---" % (time.time() - start_time))
