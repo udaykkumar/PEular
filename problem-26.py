@@ -50,7 +50,7 @@ def Solve(sd):
     largeSequenceGeneragedBy = 1
     for d in range(1,sd):
         rs = recurringSequence(d)
-        print "i = " , d , rs
+        #print "i = " , d , rs
 
 
 
