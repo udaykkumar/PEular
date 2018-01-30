@@ -22,35 +22,27 @@ import time
 import sys
 
 
-def recurringSequence(n):
-    i = 0
-    quotientList = []
-    dividend = 1*10
-    divisor  = n
-    reminder = 1
-    quotient = 1
-    while ( i <= 100 and reminder != 0):
-        while( dividend < divisor ):
-            dividend *= 10
-            quotientList.append('0')
-
-        reminder = dividend%divisor
-
-        quotient = (dividend-reminder)/divisor
-        quotientList.append(str(quotient))
-
-        dividend  = (reminder*10)
-        i += 1
-
-    if reminder == 0:
-        return []
-    return ''.join(quotientList)
 
 def Solve(sd):
-    largeSequenceGeneragedBy = 1
-    for d in range(1,sd):
-        rs = recurringSequence(d)
-        #print "i = " , d , rs
+    maxRecurringLen  = 0
+    for d in range(sd-1, 0, -1):
+        if maxRecurringLen > d:
+            break
+
+        remaindersPosition = [0]*(d+1)
+        value = 1
+        pos   = 0
+
+        while remaindersPosition[value] == 0 and value != 0 :
+            remaindersPosition[value] = pos
+            value *= 10
+            value %= d
+            pos   += 1
+
+        if pos - remaindersPosition[value] > maxRecurringLen:
+            maxRecurringLen = pos - remaindersPosition[value]
+
+    return maxRecurringLen
 
 
 
