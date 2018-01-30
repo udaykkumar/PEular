@@ -25,6 +25,7 @@ import sys
 
 def Solve(sd):
     maxRecurringLen  = 0
+    resultD          = 0
     for d in range(sd-1, 0, -1):
         if maxRecurringLen > d:
             break
@@ -41,8 +42,9 @@ def Solve(sd):
 
         if pos - remaindersPosition[value] > maxRecurringLen:
             maxRecurringLen = pos - remaindersPosition[value]
+            resultD = d
 
-    return maxRecurringLen
+    return resultD
 
 
 
