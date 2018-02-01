@@ -32,20 +32,23 @@ def getDigitPower(d,p):
     return s
 
 
-def Solve_Naive():
+def Solve_Naive(p):
+
+    MAX_LIMIT = math.pow(9,5)*4
     i = 10
     naiveSum = 0
-    while i <= 204979:
-        if i == getDigitPower(i,5):
+
+    while i <= MAX_LIMIT:
+        if i == getDigitPower(i,p):
             naiveSum += i
         i += 1
     return naiveSum
 
-def Solve():
-    return Solve_Naive()
+def Solve(p):
+    return Solve_Naive(p)
 
 
 start_time = time.time()
-print Solve()
+print Solve(5)
 print("--- %s seconds ---" % (time.time() - start_time))
 
