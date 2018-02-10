@@ -20,7 +20,16 @@ import math
 
 
 def Solve_Naive():
-    return 0
+    d = '0'
+    for i in range(1,100000):
+            d += str(i)
+    j = 10
+    m = 1
+    while j < 1000000:
+        m *= int(d[j])
+        j *= 10
+
+    return m
 
 def Solve():
     return Solve_Naive()
