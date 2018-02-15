@@ -42,7 +42,18 @@ def Solve_Naive():
     n = 3
     while n < MAX:
         if n not in primes:
-            print n
+            SatisfiesTheRule = False
+            SqRt = 0
+            for p in primes:
+                if n < p:
+                    break
+                lhs = int( (n-p)/2 )
+                SqRt = int(math.sqrt(lhs))
+                if SqRt*SqRt == lhs:
+                    SatisfiesTheRule = True
+                    break
+            if SatisfiesTheRule == False:
+                return n
         n += 2
 
     return res
