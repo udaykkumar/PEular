@@ -21,7 +21,6 @@ NOTE: This is a much more difficult version of Problem 18. It is not possible to
 
 import time
 import sys
-import numpy as np  # Deal with the matrix
 
 def getMatrix(coOrdinates):
     foo    =    [ str(line).strip('\r\n').lstrip(' ').rstrip(' ').split(' ') for line in sys.stdin ]
