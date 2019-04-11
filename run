@@ -1,5 +1,12 @@
 #!/bin/bash
 
+which python
+if test $? -ne 0; then
+    printf "Don't see python here \n"
+    printf "Install Python and comeback ..\n"
+    exit;
+fi
+
 for file in $(ls problem*.py | sort -n -t - -k 2);
 do
     echo ""
@@ -12,4 +19,16 @@ do
     fi
 
     echo ""
+done
+
+for file in $(ls problem*.cpp | sort -n -t - -k 2);
+do
+     echo ""
+    filename=$(basename ${file%.*})
+    echo "Executing  $filename"
+    echo "c++  $file -o $filename"
+    c++  $file -o $filename
+    ./$filename
+    echo ""
+
 done
