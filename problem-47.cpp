@@ -8,23 +8,23 @@ std::vector<int> primes;
 
 void generatePrimes(int n = INT_MAX)
 {
-    bool *primesArry = new bool[n];
-        memset( primesArry, true, n );
+    bool *seive = new bool[n];
+        memset( seive, true, n );
 
     for( int idx = 2; ( idx * idx ) < n ; idx ++ )
     {
-        if( primesArry[idx] == true )
+        if( seive[idx] == true )
         {
             for( int jdx  = idx *2 ; jdx < n; jdx += idx )
-                primesArry[jdx] = false;
+                seive[jdx] = false;
         }
     }
 
     for( int idx = 2 ; idx < n ; idx ++  ){
-        if( primesArry[idx] )
+        if( seive[idx] )
             primes.push_back(idx);
     }
-    free(primesArry);
+    free(seive);
 }
 
 int distinctPrimeFactors(int x)
