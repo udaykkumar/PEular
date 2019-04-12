@@ -26,7 +26,7 @@ do
      echo ""
     filename=$(basename ${file%.*})
     echo "Executing  $filename"
-    echo "c++  $file -o $filename"
+    echo "c++  $file -o $filename -std=c++11"
     c++  $file -o $filename
     ./$filename
     echo ""
