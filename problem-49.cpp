@@ -45,9 +45,8 @@ std::vector<int> split(int x)
     return v;
 }
 
-void permute( std::vector<int> p, std::vector<int> &permutations, int i = 0 )
+void permute( std::vector<int> p, std::vector<int> &permutations, size_t i = 0 )
 {
-    static int depth = 0;
     if( i == p.size()-1 ) {
         int num = 0;
         for( auto n: p ) {
@@ -60,7 +59,7 @@ void permute( std::vector<int> p, std::vector<int> &permutations, int i = 0 )
         }
         return ;
     }
-    for( int j = i; j < p.size() ; j ++ )
+    for( size_t j = i; j < p.size() ; j ++ )
     {
         std::swap(p[i], p[j]);
         permute(p, permutations, i+1);
@@ -84,7 +83,7 @@ int main()
 
     for( auto a : integerMaps ){
         std::vector<int> v = a.second;
-        for( int i = 0 ; i < v.size(); i ++ ) {
+        for( size_t i = 0 ; i < v.size(); i ++ ) {
             for( int j = 0; j < v.size() ; j ++ ) {
                 int diff = v[j] - v[i];
                 if( diff > 0 ) {
