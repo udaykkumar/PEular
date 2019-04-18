@@ -1,34 +1,122 @@
 #!/bin/bash
 
-which python
-if test $? -ne 0; then
-    printf "Don't see python here \n"
-    printf "Install Python and comeback ..\n"
-    exit;
-fi
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+NC=$(tput sgr0)
 
-for file in $(ls problem*.py | sort -n -t - -k 2);
-do
-    echo ""
-    filename=$(basename ${file%.*})
-    echo "Executing  $filename"
-    if test -f $filename.in; then
-        `which python` $file  < $filename.in
-    else
-        `which python` $file  
-    fi
 
-    echo ""
-done
+display_top_message()
+{
+    echo    "${NC}Starting Test Suite ${NC} "
+}
 
-for file in $(ls problem*.cpp | sort -n -t - -k 2);
-do
-     echo ""
-    filename=$(basename ${file%.*})
-    echo "Executing  $filename"
-    #echo "c++  $file -o $filename -std=c++11"
-    c++  $file -o $filename -std=c++11
-    ./$filename
-    echo ""
 
-done
+display_message_start_running_tests()
+{
+    echo    "${NC}Running tests ${NC} "
+}
+
+display_message_stop_running_tests()
+{
+    echo    "${NC}Running tests Done ${NC} "
+}
+
+
+display_message_start_cleaning_tests()
+{
+    echo    "${NC}Cleaning tests ${NC} "
+}
+
+display_message_stop_cleaning_tests()
+{
+    echo    "${NC}Cleaning tests Done ${NC} "
+}
+
+display_message_compile_results()
+{
+    echo    "${NC}Compiling Results ${NC} "
+}
+
+
+
+clean_tests()
+{
+    local idx=1
+    for f in *.cpp;
+    do
+        filename="${f%.*}"
+        rm -f $filename
+        if [ $? -eq 0 ];
+        then
+            printf    '%4s %-60s \t %s\n' "$idx" "   [ ${YELLOW} Clean ${NC} ] $filename" "[ ${GREEN} OK ${NC} ]"
+        else
+            printf    '%4s %-60s \t %s\n' "$idx" "   [ ${YELLOW} Clean ${NC} ] $filename" "[ ${RED} Failed ${NC} ]"
+        fi
+        idx=$((idx+1))
+    done
+}
+
+idx=1
+run_tests()
+{
+    for f in $(ls problem*.* | sort -n -t - -k 2); 
+    do
+        filename="${f%.*}"
+        extention="${f##*.}"
+
+        case $extention in
+            "py")
+                exe="${filename}.py"
+                ;;
+
+            "cpp")
+                c++ -o $filename "$filename.cpp" -std=c++11
+                exe="${filename}" 
+                ;;
+                
+               *)
+                    continue
+                ;;
+        esac 
+
+
+        start_time=$(date +%s.%N)
+        if [ -f "$filename.in" ];
+        then
+            ./$exe < "$filename.in" > /dev/null 2>&1
+        else
+            ./$exe > /dev/null 2>&1
+        fi
+        end_time=$(date +%s.%N)
+
+        execution_time=$(echo "$end_time - $start_time" | bc)
+        if [ $? -eq 0 ]; then
+            printf    '%4s %-60s \t %s  %4.4s %4s\n' "$idx" "   [ ${YELLOW} Executing ${NC} ] $filename" "[ ${GREEN} OK ${NC} ]" "$execution_time" "seconds"
+        else
+            printf    '%4s %-60s \t %s  %4.4s \n' "$idx" "   [ ${YELLOW} Executing ${NC} ] $filename" "[ ${RED} Failed ${NC} ]" "na"
+        fi
+
+        idx=$((idx+1))
+    done
+
+}
+
+
+# Run Tests
+display_message_start_running_tests
+total_start_time=$(date +%s.%N)
+run_tests
+total_end_time=$(date +%s.%N)
+
+#Clean Tests
+display_message_start_cleaning_tests
+clean_tests
+
+#Compile Results
+display_message_compile_results
+idx=$((idx-1))
+total_execution_time=$(echo "$total_end_time - $total_start_time" | bc)
+printf    '%-60s \t %s %s\n' "   [ ${YELLOW} Finished  ${NC} ]  Tests $idx .. Execution time" "[ ${GREEN} $total_execution_time ${NC} ]"  "seconds"
+
+rm -rf a.out
