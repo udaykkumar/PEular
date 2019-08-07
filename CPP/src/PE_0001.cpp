@@ -15,5 +15,25 @@ namespace project_euler
 		}
 		return sum;
 	}
+
+	size_t solution_const_time()
+	{
+		size_t sum = 0;
+		size_t   n = 0;	
+
+							    n = (N-1)/3;	
+		size_t sum_multiples_of_3 = 3 *  n * ( n + 1 ) / 2 ;
+
+
+							    n = (N-1)/5;	
+		size_t sum_multiples_of_5 = 5 *  n * ( n + 1 ) / 2 ;
+
+								 n = (N-1)/15;	
+		size_t sum_multiples_of_15 = 15 *  n * ( n + 1 ) / 2 ;
+
+
+		sum = sum_multiples_of_3 + sum_multiples_of_5 - sum_multiples_of_15 ;
+		return sum;
+	}
 }
 
