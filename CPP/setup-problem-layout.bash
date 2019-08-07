@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# We'd expect Argument 1 to be of type "PROJECT_EULER_xxxx"
+# We'd expect Argument 1 to be of type "PE_xxxx"
 [ -n "$1" ] || exit
 
 _Inc_File="src/${1}.hpp"
