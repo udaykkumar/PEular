@@ -103,6 +103,7 @@ run_tests()
 }
 
 
+pushd Python
 # Run Tests
 display_message_start_running_tests
 total_start_time=$(date +%s.%N)
@@ -120,3 +121,5 @@ total_execution_time=$(echo "$total_end_time - $total_start_time" | bc)
 printf    '%-60s \t %s %s\n' "   [ ${YELLOW} Finished  ${NC} ]  Tests $idx .. Execution time" "[ ${GREEN} $total_execution_time ${NC} ]"  "seconds"
 
 rm -rf a.out
+
+popd
