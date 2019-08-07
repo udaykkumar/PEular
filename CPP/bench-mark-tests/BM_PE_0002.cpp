@@ -1,7 +1,7 @@
 #include <benchmark/benchmark.h>
 #include <PE_0002.hpp>
 
-static void PE_0002_Naive_Solution(benchmark::State& state) 
+static void BM_PE_0002_Naive_Solution(benchmark::State& state) 
 {
   // Perform setup here
   for (auto _ : state) 
@@ -10,5 +10,5 @@ static void PE_0002_Naive_Solution(benchmark::State& state)
   }
 }
 // Register the function as a benchmark
-BENCHMARK(PE_0002_Naive_Solution);
+BENCHMARK(BM_PE_0002_Naive_Solution);
 
