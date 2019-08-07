@@ -4,6 +4,9 @@ cmake_minimum_required (VERSION 2.8,9)
 project (project-euler)
 
 #Benchmark Find and other stuff
+add_subdirectory(googletest)
+
+set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "Suppressing benchmark's tests" FORCE)
 add_subdirectory(benchmark)
 
 #Boost and Family
