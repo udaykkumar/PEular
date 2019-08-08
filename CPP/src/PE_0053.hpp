@@ -4,6 +4,7 @@
 namespace project_euler
 {
 	size_t PE_0053_Naive_Solution();	
+	size_t PE_0053_Naive_Solution_Caching();
 }
 
 #endif
