@@ -12,3 +12,14 @@ static void BM_PE_0004_Naive_Solution(benchmark::State& state)
 // Register the function as a benchmark
 BENCHMARK(BM_PE_0004_Naive_Solution);
 
+static void BM_PE_0004_Naive_Solution_Better(benchmark::State& state) 
+{
+  // Perform setup here
+  for (auto _ : state) 
+  {
+    project_euler::PE_0004_Naive_Solution_Better();
+  }
+}
+// Register the function as a benchmark
+BENCHMARK(BM_PE_0004_Naive_Solution_Better);
+
