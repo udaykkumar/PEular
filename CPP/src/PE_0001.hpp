@@ -5,6 +5,7 @@ namespace project_euler
 {
 	size_t solution_naive();
 	size_t solution_const_time();
+
 }
 
 #endif
