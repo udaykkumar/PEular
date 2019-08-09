@@ -6,7 +6,7 @@ static void BM_PE_0055_Solution(benchmark::State& state)
   // Perform setup here
   for (auto _ : state) 
   {
-    /* Solution Here */
+   	project_euler::PE_0055_Naive_Solution();
   }
 }
 // Register the function as a benchmark

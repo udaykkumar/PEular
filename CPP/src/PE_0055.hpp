@@ -5,7 +5,7 @@
 
 namespace project_euler
 {
-	size_t non_lychrel_nos();
+	size_t PE_0055_Naive_Solution();
 }
 
 #endif

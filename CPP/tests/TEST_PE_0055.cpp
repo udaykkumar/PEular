@@ -7,7 +7,7 @@ BOOST_AUTO_TEST_SUITE( TEST_PE_0055 )
 
 BOOST_AUTO_TEST_CASE( Case_1 )
 {
-	project_euler::non_lychrel_nos();
+	BOOST_CHECK(project_euler::PE_0055_Naive_Solution() == 249 );
 }
 BOOST_AUTO_TEST_SUITE_END()
 
